@@ -1,9 +1,14 @@
-using Microsoft.OpenApi;
-using Swashbuckle.AspNetCore.Filters;
 using Application.Extensions;
 using Infrastructure.Extensions;
+using Microsoft.OpenApi;
+using Presentation.Configurations;
+using Presentation.Extensions;
+using Serilog;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog(LoggerConfigurator.ConfigureLogger(builder.Configuration));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -28,8 +33,10 @@ builder
     });
 
 
-builder.Services.AddApplicationServices();
 builder.Services.AddUnitOfWork();
+builder.Services.AddApplicationServices();
+
+builder.Services.AddEndpointRateLimiters();
 
 
 
@@ -41,6 +48,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseRateLimiter();
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

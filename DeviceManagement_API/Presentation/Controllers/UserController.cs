@@ -3,6 +3,7 @@ using Application.CommandsAndQueries.Users;
 using Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Presentation.Controllers;
 
@@ -23,7 +24,9 @@ public class UserController : Controller
     [AllowAnonymous]
     [HttpPost]
     [Route("sign-up")]
-    public async Task<IActionResult> CreateUserAsync([FromBody] UserRequestDTO userDto, CancellationToken cancellationToken)
+    [EnableRateLimiting("registerLimiter")]
+    public async Task<IActionResult> CreateUserAsync([FromBody] UserRequestDTO userDto, 
+        CancellationToken cancellationToken)
     {
         if (userDto is null)
         {
