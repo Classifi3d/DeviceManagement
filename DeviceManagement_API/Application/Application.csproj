@@ -10,8 +10,6 @@
 	<ItemGroup>
 	  <Folder Include="Abstraction\Services\" />
 	  <Folder Include="CommandsAndQueries\Devices\" />
-	  <Folder Include="CommandsAndQueries\Users\" />
-	  <Folder Include="DTOs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CSharpFunctionalExtensions" Version="3.7.0" />
