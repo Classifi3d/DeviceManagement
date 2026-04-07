@@ -1,5 +1,7 @@
 using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.Filters;
+using Application.Extensions;
+using Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,11 @@ builder
         ;
         options.OperationFilter<SecurityRequirementsOperationFilter>();
     });
+
+
+builder.Services.AddApplicationServices();
+builder.Services.AddUnitOfWork();
+
 
 
 var app = builder.Build();

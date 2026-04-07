@@ -7,4 +7,15 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Domain\Domain.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Abstraction\Services\" />
+	  <Folder Include="CommandsAndQueries\Devices\" />
+	  <Folder Include="CommandsAndQueries\Users\" />
+	  <Folder Include="DTOs\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="CSharpFunctionalExtensions" Version="3.7.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
+	  <PackageReference Include="Scrutor" Version="7.0.0" />
+	</ItemGroup>
 </Project>
